@@ -75,30 +75,38 @@ final class RandomJokeViewController: UIViewController {
     
     private func bindingViewModel() {
         viewModel.onJokeUpdated = { [weak self] text in
-            self?.jokeLabel.text = text
+            DispatchQueue.main.async {
+                self?.jokeLabel.text = text
+            }
         }
         
         viewModel.onLoadingChanged = { [weak self] isLoading in
-            if isLoading {
-                self?.activityIndicator.startAnimating()
-                self?.jokeLabel.textColor = .gray
-                self?.loadButton.alpha = 0.7
-                self?.loadButton.isEnabled = false
-            } else {
-                self?.activityIndicator.stopAnimating()
-                self?.jokeLabel.textColor = .black
-                self?.loadButton.alpha = 1.0
-                self?.loadButton.isEnabled = true
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                if isLoading {
+                    self.activityIndicator.startAnimating()
+                    self.jokeLabel.textColor = .gray
+                    self.loadButton.alpha = 0.7
+                    self.loadButton.isEnabled = false
+                } else {
+                    self.activityIndicator.stopAnimating()
+                    self.jokeLabel.textColor = .black
+                    self.loadButton.alpha = 1.0
+                    self.loadButton.isEnabled = true
+                }
             }
         }
         
         viewModel.onError = { [weak self] message in
-            let alert = UIAlertController(
-                title: "Ошибка",
-                message: message,
-                preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            self?.present(alert, animated: true)
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                let alert = UIAlertController(
+                    title: "Ошибка",
+                    message: message,
+                    preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(alert, animated: true)
+            }
         }
     }
     

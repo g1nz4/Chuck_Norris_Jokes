@@ -32,12 +32,13 @@ final class CategoriesListTableViewController: UITableViewController {
         
         viewModel.onError = { [weak self] message in
             DispatchQueue.main.async {
+                guard let self = self else { return }
                 let alert = UIAlertController(
                     title: "Ошибка",
                     message: message,
                     preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default))
-                self?.present(alert, animated: true)
+                self.present(alert, animated: true)
             }
         }
     }
