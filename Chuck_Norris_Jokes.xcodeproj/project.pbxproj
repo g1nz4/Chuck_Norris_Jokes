@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EAAE204A2F8D8CD4001A4B0C /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = EAAE20492F8D8CD4001A4B0C /* KeychainAccess */; };
 		EAB4140C2F854E3F00A08272 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EAB4140B2F854E3F00A08272 /* RealmSwift */; };
 		EAB4140F2F854E4800A08272 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = EAB4140B2F854E3F00A08272 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -55,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAAE204A2F8D8CD4001A4B0C /* KeychainAccess in Frameworks */,
 				EAB4140C2F854E3F00A08272 /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -100,6 +102,7 @@
 			name = Chuck_Norris_Jokes;
 			packageProductDependencies = (
 				EAB4140B2F854E3F00A08272 /* RealmSwift */,
+				EAAE20492F8D8CD4001A4B0C /* KeychainAccess */,
 			);
 			productName = Chuck_Norris_Jokes;
 			productReference = EAB413F02F85452F00A08272 /* Chuck_Norris_Jokes.app */;
@@ -131,6 +134,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				EAB414082F854E3F00A08272 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				EAAE20482F8D8CD4001A4B0C /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = EAB413F12F85452F00A08272 /* Products */;
@@ -376,6 +380,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		EAAE20482F8D8CD4001A4B0C /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		EAB414082F854E3F00A08272 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
@@ -387,6 +399,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		EAAE20492F8D8CD4001A4B0C /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EAAE20482F8D8CD4001A4B0C /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
 		EAB4140B2F854E3F00A08272 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EAB414082F854E3F00A08272 /* XCRemoteSwiftPackageReference "realm-swift" */;
