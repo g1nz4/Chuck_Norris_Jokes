@@ -12,7 +12,7 @@ protocol DataBaseServiceProtocol {
 final class DataBaseService: DataBaseServiceProtocol {
 
     func save(joke: Joke) throws {
-        let realm = try Realm()
+        let realm = try RealmProvider.shared.getRealm()
         
         let categories: [String]
             if joke.categories.isEmpty {
@@ -35,7 +35,7 @@ final class DataBaseService: DataBaseServiceProtocol {
     }
     
     func deleteJoke(joke id: String) throws {
-        let realm = try Realm()
+        let realm = try RealmProvider.shared.getRealm()
         
         guard let object = realm.object(ofType: JokeObject.self, forPrimaryKey: id) else { return }
         try realm.write {
@@ -44,7 +44,7 @@ final class DataBaseService: DataBaseServiceProtocol {
     }
     
     func fetchAllJokesSortedByDate() throws -> [JokeObject] {
-        let realm = try Realm()
+        let realm = try RealmProvider.shared.getRealm()
     
         let results = realm.objects(JokeObject.self)
             .sorted(byKeyPath: "createdAt", ascending: false)
@@ -52,7 +52,7 @@ final class DataBaseService: DataBaseServiceProtocol {
     }
     
     func fetchAllCategories() throws -> [String] {
-        let realm = try Realm()
+        let realm = try RealmProvider.shared.getRealm()
         
         let jokes = realm.objects(JokeObject.self)
         
@@ -67,10 +67,10 @@ final class DataBaseService: DataBaseServiceProtocol {
     }
     
     func fetchJokes(forCategory category: String) throws -> [JokeObject] {
-        let realm = try Realm()
+        let realm = try RealmProvider.shared.getRealm()
         
         let result =  realm.objects(JokeObject.self)
-            .filter("Any categories == %@", category)
+            .filter("ANY categories == %@", category)
             .sorted(byKeyPath: "createdAt", ascending: false)
         
         return Array(result)
